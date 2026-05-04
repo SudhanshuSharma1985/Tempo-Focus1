@@ -179,7 +179,7 @@ function renderAll() {
   els.thresholdSelect.value = String(state.settings.focusThreshold || 3);
   els.reminderButtonText.textContent = state.settings.reminders ? "Reminders on" : "Enable reminders";
   renderPriorities();
-  renderHours();
+  try { renderHours(); } catch (e) { console.error("renderHours failed:", e); }
   renderMetrics();
   renderAnalysis();
 }
@@ -380,8 +380,8 @@ function updateLog(hour, patch, shouldRender = true) {
     updatedAt: new Date().toISOString()
   };
   saveState();
+  renderMetrics();
   if (shouldRender) {
-    renderMetrics();
     renderAnalysis();
     checkReminderAndAlerts();
   }
