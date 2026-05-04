@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/login.js", "use": "@vercel/node" },
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "app.js", "use": "@vercel/static" },
+    { "src": "styles.css", "use": "@vercel/static" },
+    { "src": "service-worker.js", "use": "@vercel/static" },
+    { "src": "manifest.webmanifest", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/login", "dest": "/api/login.js", "methods": ["POST"] },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
